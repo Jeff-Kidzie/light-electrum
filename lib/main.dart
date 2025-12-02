@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lightweight_electrum/screen/design_component.dart';
-import 'package:lightweight_electrum/screen/login_screen.dart';
+import 'package:lightweight_electrum/screen/detail_bike.dart';
 import 'package:lightweight_electrum/theme/app_theme.dart';
 
 void main() {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
-      home: const LoginScreen(),
+      home: const DetailBike(),
     );
   }
 }

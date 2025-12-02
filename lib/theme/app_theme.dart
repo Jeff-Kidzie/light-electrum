@@ -13,6 +13,14 @@ class AppTheme {
       textTheme: GoogleFonts.interTextTheme(textTheme).copyWith(
         bodyMedium: GoogleFonts.inter(fontSize: 14, color: Colors.grey),
       ),
+      cardTheme: CardThemeData(
+        color: Colors.white,
+        elevation: 4,
+        margin: EdgeInsets.all(8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
     );
   }
 }
