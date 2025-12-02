@@ -10,16 +10,13 @@ class AppTheme {
       primaryColor: Color(0xFF2B6EF1),
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       fontFamily: GoogleFonts.inter().fontFamily,
-      textTheme: GoogleFonts.interTextTheme(textTheme).copyWith(
-        bodyMedium: GoogleFonts.inter(fontSize: 14, color: Colors.grey),
-      ),
+      textTheme: GoogleFonts.interTextTheme(
+        textTheme,
+      ).copyWith(bodyMedium: GoogleFonts.inter(fontSize: 14)),
       cardTheme: CardThemeData(
         color: Colors.white,
         elevation: 4,
-        margin: EdgeInsets.all(8),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }

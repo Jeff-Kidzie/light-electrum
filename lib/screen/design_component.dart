@@ -23,11 +23,13 @@ class DesignComponentScreen extends StatelessWidget {
               AppButton(onPressed: () {}, label: 'Create Account'),
               SizedBox(height: 16),
               AppTextField(
+                title: 'Email Address',
                 hintText: 'Enter your email',
                 prefixIcon: Icon(Icons.email),
               ),
               SizedBox(height: 16),
               AppTextField(
+                title: 'Full Name',
                 hintText: 'Enter your name',
                 prefixIcon: Icon(Icons.person),
               ),

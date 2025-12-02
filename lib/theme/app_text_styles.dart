@@ -39,9 +39,15 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle bold = GoogleFonts.inter(fontWeight: FontWeight.bold);
+  static TextStyle bold = GoogleFonts.inter(
+    fontWeight: FontWeight.bold,
+    color: Color(0xFF1A1A1A),
+  );
 
-  static TextStyle semiBold = GoogleFonts.inter(fontWeight: FontWeight.w600);
+  static TextStyle semiBold = GoogleFonts.inter(
+    fontWeight: FontWeight.w600,
+    color: Color(0xFF1A1A1A),
+  );
 
   static TextStyle priceStyleBig = GoogleFonts.inter(
     fontSize: 16,
@@ -54,6 +60,8 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: Color(0xFF555555),
   );
+
+  static TextStyle title = semiBold.copyWith(fontSize: 18, color: Colors.black);
 
   AppTextStyles._();
 }

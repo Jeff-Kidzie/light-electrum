@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lightweight_electrum/screen/book_form_screen.dart';
 import 'package:lightweight_electrum/screen/detail_bike.dart';
 import 'package:lightweight_electrum/theme/app_theme.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
-      home: const DetailBike(),
+      home: const BookFormScreen(),
     );
   }
 }

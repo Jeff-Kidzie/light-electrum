@@ -37,13 +37,14 @@ class LoginScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Full name', style: AppTextStyles.label),
-          SizedBox(height: 8),
-          AppTextField(hintText: 'Full name', prefixIcon: Icon(Icons.person)),
+          // Text('Full name', style: AppTextStyles.label),
+          // SizedBox(height: 8),
+          AppTextField(title: 'Full name', prefixIcon: Icon(Icons.person)),
           SizedBox(height: 16),
           Text('Email Address', style: AppTextStyles.label),
           SizedBox(height: 8),
           AppTextField(
+            title: 'Email Address',
             hintText: 'Email Address',
             prefixIcon: Icon(Icons.email),
           ),
