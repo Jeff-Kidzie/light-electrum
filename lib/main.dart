@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lightweight_electrum/screen/success_book_screen.dart';
+import 'package:lightweight_electrum/feature/auth/view/register_screen.dart';
 import 'package:lightweight_electrum/theme/app_theme.dart';
 
 void main() {
@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
-      home: const SuccessBookScreen(),
+      // home: const DesignComponentScreen(),
+      home: RegisterScreen(),
     );
   }
 }
