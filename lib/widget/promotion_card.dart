@@ -55,20 +55,11 @@ class PromotionCard extends StatelessWidget {
                   ),
               ],
             ),
-            SizedBox(height: 16),
-            Text(
-              title,
-              style: AppTextStyles.semiBold.copyWith(
-                color: Colors.black,
-                fontSize: 20,
-              ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              description,
-              style: AppTextStyles.bodyMedium.copyWith(fontSize: 16),
-            ),
-            SizedBox(height: 16),
+            SizedBox(height: 8),
+            Text(title, style: AppTextStyles.title),
+            SizedBox(height: 8),
+            Text(description, style: AppTextStyles.bodyMedium),
+            SizedBox(height: 8),
             Row(
               children: [
                 AppButton(
@@ -77,7 +68,12 @@ class PromotionCard extends StatelessWidget {
                   fullWidth: false,
                 ),
                 Spacer(),
-                Text(priceText, style: AppTextStyles.label),
+                Text(
+                  priceText,
+                  style: AppTextStyles.bodyMedium.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ],

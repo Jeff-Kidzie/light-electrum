@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:lightweight_electrum/theme/app_color.dart';
 import 'package:lightweight_electrum/theme/app_text_styles.dart';
 import 'package:lightweight_electrum/widget/chips.dart';
 
@@ -29,30 +30,18 @@ class RentalPackageCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text(
-                  title,
-                  style: AppTextStyles.semiBold.copyWith(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
-                ),
+                Text(title, style: AppTextStyles.title),
                 Spacer(),
-                Text(
-                  subtitle,
-                  style: AppTextStyles.semiBold.copyWith(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
-                ),
+                Text(subtitle, style: AppTextStyles.regular),
               ],
             ),
             SizedBox(height: 8),
-            Text(price, style: AppTextStyles.priceStyleBig),
+            Text(price, style: AppTextStyles.priceStyle),
             SizedBox(height: 8),
             Chips(
               label: 'Pay as you go',
-              labelColor: Colors.grey,
-              chipColor: Colors.grey.shade200,
+              labelColor: Color(0xFF555555),
+              chipColor: Color(AppColors.background),
             ),
             // Text(
             //   'Details about the rental package go here.',

@@ -9,28 +9,16 @@ class AppTextStyles {
     color: Colors.black,
   );
 
-  static TextStyle heading2 = GoogleFonts.inter(
-    fontSize: 24,
-    fontWeight: FontWeight.w700,
-  );
-
-  // Body
-  static TextStyle bodyLarge = GoogleFonts.inter(
-    fontSize: 16,
-    fontWeight: FontWeight.w300,
-    color: Color(0xFF555555),
-  );
-
   static TextStyle bodyMedium = GoogleFonts.inter(
     fontSize: 14,
     fontWeight: FontWeight.normal,
     color: Color(0xFF555555),
   );
 
-  // Labels
   static TextStyle label = GoogleFonts.inter(
     fontSize: 12,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
+    color: Color(0xFF777777),
   );
 
   // Buttons
@@ -49,19 +37,19 @@ class AppTextStyles {
     color: Color(0xFF1A1A1A),
   );
 
-  static TextStyle priceStyleBig = GoogleFonts.inter(
-    fontSize: 16,
+  static TextStyle priceStyle = GoogleFonts.inter(
+    fontSize: 14,
     fontWeight: FontWeight.w700,
     color: Color(AppColors.primary),
   );
 
   static TextStyle regular = GoogleFonts.inter(
     fontSize: 14,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
     color: Color(0xFF555555),
   );
 
-  static TextStyle title = semiBold.copyWith(fontSize: 18, color: Colors.black);
+  static TextStyle title = semiBold.copyWith(fontSize: 16, color: Colors.black);
 
   AppTextStyles._();
 }

@@ -1,0 +1,152 @@
+{
+  "bike_details": [
+    {
+      "id": "bike_001",
+      "name": "Electrum H5",
+      "model": "H5",
+      "description": "High-performance electric bike designed for urban commuting and recreational riding.",
+      "imageUrl": "assets/images/electrumh5.webp",
+      "range": "80km",
+      "maxSpeed": "25 km/h",
+      "pricing": {
+        "perHour": 50000,
+        "perDay": 300000,
+        "perWeek": 1500000,
+        "priceText": "Rp 50.000",
+        "billingInfo": "Pay as you go, billed per minute"
+      },
+      "specifications": {
+        "motor": "250W Brushless DC Motor",
+        "battery": "36V 10Ah Lithium-ion",
+        "maxSpeed": "25 km/h",
+        "frameMaterial": "Aluminum Alloy",
+        "weight": "22 kg",
+        "maxLoad": "120 kg",
+        "brakes": "Disc Brakes (Front & Rear)",
+        "tires": "26-inch Puncture-resistant"
+      },
+      "features": [
+        "LED Display with Speed & Battery Indicator",
+        "USB Charging Port",
+        "Integrated Front & Rear Lights",
+        "Adjustable Seat Height",
+        "Anti-theft Lock System",
+        "Smartphone Holder",
+        "Water-resistant Design"
+      ],
+      "stats": [
+        {
+          "label": "Range",
+          "value": "80km"
+        },
+        {
+          "label": "Speed",
+          "value": "25 km/h"
+        }
+      ],
+      "status": "available",
+      "batteryLevel": 100,
+      "rating": 4.8,
+      "totalRides": 1250
+    },
+    {
+      "id": "bike_002",
+      "name": "Electrum H5",
+      "model": "H5",
+      "description": "High-performance electric bike designed for urban commuting and recreational riding.",
+      "imageUrl": "assets/images/electrumh5.webp",
+      "range": "75km",
+      "maxSpeed": "25 km/h",
+      "pricing": {
+        "perHour": 50000,
+        "perDay": 300000,
+        "perWeek": 1500000,
+        "priceText": "Rp 50.000",
+        "billingInfo": "Pay as you go, billed per minute"
+      },
+      "specifications": {
+        "motor": "250W Brushless DC Motor",
+        "battery": "36V 10Ah Lithium-ion",
+        "maxSpeed": "25 km/h",
+        "frameMaterial": "Aluminum Alloy",
+        "weight": "22 kg",
+        "maxLoad": "120 kg",
+        "brakes": "Disc Brakes (Front & Rear)",
+        "tires": "26-inch Puncture-resistant"
+      },
+      "features": [
+        "LED Display with Speed & Battery Indicator",
+        "USB Charging Port",
+        "Integrated Front & Rear Lights",
+        "Adjustable Seat Height",
+        "Anti-theft Lock System",
+        "Smartphone Holder",
+        "Water-resistant Design"
+      ],
+      "stats": [
+        {
+          "label": "Range",
+          "value": "75km"
+        },
+        {
+          "label": "Speed",
+          "value": "25 km/h"
+        }
+      ],
+      "status": "available",
+      "batteryLevel": 95,
+      "rating": 4.7,
+      "totalRides": 980
+    },
+    {
+      "id": "bike_003",
+      "name": "Electrum Pro X",
+      "model": "Pro X",
+      "description": "Premium electric bike with extended range and advanced features for long-distance rides.",
+      "imageUrl": "assets/images/electrumh5.webp",
+      "range": "100km",
+      "maxSpeed": "30 km/h",
+      "pricing": {
+        "perHour": 75000,
+        "perDay": 450000,
+        "perWeek": 2250000,
+        "priceText": "Rp 75.000",
+        "billingInfo": "Pay as you go, billed per minute"
+      },
+      "specifications": {
+        "motor": "500W Brushless DC Motor",
+        "battery": "48V 15Ah Lithium-ion",
+        "maxSpeed": "30 km/h",
+        "frameMaterial": "Carbon Fiber",
+        "weight": "20 kg",
+        "maxLoad": "130 kg",
+        "brakes": "Hydraulic Disc Brakes",
+        "tires": "27.5-inch All-terrain"
+      },
+      "features": [
+        "Smart LCD Display",
+        "GPS Tracking",
+        "USB-C Fast Charging Port",
+        "Automatic Headlights",
+        "Suspension Fork",
+        "Bluetooth Connectivity",
+        "Mobile App Integration",
+        "Cruise Control"
+      ],
+      "stats": [
+        {
+          "label": "Range",
+          "value": "100km"
+        },
+        {
+          "label": "Speed",
+          "value": "30 km/h"
+        }
+      ],
+      "status": "available",
+      "batteryLevel": 100,
+      "rating": 4.9,
+      "totalRides": 2100
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "promotions": [
+    {
+      "id": "promo_001",
+      "label": "New User",
+      "labelColor": "#FFFFFF",
+      "chipColor": "#2196F3",
+      "title": "First Ride Free!",
+      "description": "Get your first 30 minutes free on any bike",
+      "buttonText": "Claim Now",
+      "discountText": "100% OFF",
+      "priceText": "Free",
+      "isActive": true,
+      "validUntil": "2025-12-31"
+    },
+    {
+      "id": "promo_002",
+      "label": "Weekend Deal",
+      "labelColor": "#FFFFFF",
+      "chipColor": "#FF9800",
+      "title": "50% Off Weekend Rides",
+      "description": "Enjoy half price on all bikes during weekends",
+      "buttonText": "Get Deal",
+      "discountText": "50% OFF",
+      "priceText": "Rp 25.000/hour",
+      "isActive": true,
+      "validUntil": "2025-12-15"
+    },
+    {
+      "id": "promo_003",
+      "label": "Limited Time",
+      "labelColor": "#FFFFFF",
+      "chipColor": "#E91E63",
+      "title": "Monthly Pass Special",
+      "description": "Unlimited rides for one month at a special price",
+      "buttonText": "Subscribe",
+      "discountText": "30% OFF",
+      "priceText": "Rp 2.100.000",
+      "isActive": true,
+      "validUntil": "2025-12-20"
+    }
+  ]
+}

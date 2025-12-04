@@ -1,0 +1,68 @@
+{
+  "bikes": [
+    {
+      "id": "bike_001",
+      "name": "Electrum H5",
+      "model": "H5",
+      "imageUrl": "assets/images/electrumh5.webp",
+      "range": "80km",
+      "pricePerHour": 50000,
+      "priceText": "Rp 50.000/hour",
+      "status": "available",
+      "batteryLevel": 100,
+      "location": {
+        "latitude": -6.2088,
+        "longitude": 106.8456,
+        "address": "Central Jakarta"
+      }
+    },
+    {
+      "id": "bike_002",
+      "name": "Electrum H5",
+      "model": "H5",
+      "imageUrl": "assets/images/electrumh5.webp",
+      "range": "75km",
+      "pricePerHour": 50000,
+      "priceText": "Rp 50.000/hour",
+      "status": "available",
+      "batteryLevel": 95,
+      "location": {
+        "latitude": -6.2150,
+        "longitude": 106.8450,
+        "address": "South Jakarta"
+      }
+    },
+    {
+      "id": "bike_003",
+      "name": "Electrum Pro X",
+      "model": "Pro X",
+      "imageUrl": "assets/images/electrumh5.webp",
+      "range": "100km",
+      "pricePerHour": 75000,
+      "priceText": "Rp 75.000/hour",
+      "status": "available",
+      "batteryLevel": 100,
+      "location": {
+        "latitude": -6.1751,
+        "longitude": 106.8650,
+        "address": "North Jakarta"
+      }
+    },
+    {
+      "id": "bike_004",
+      "name": "Electrum Lite",
+      "model": "Lite",
+      "imageUrl": "assets/images/electrumh5.webp",
+      "range": "60km",
+      "pricePerHour": 40000,
+      "priceText": "Rp 40.000/hour",
+      "status": "in-use",
+      "batteryLevel": 80,
+      "location": {
+        "latitude": -6.2500,
+        "longitude": 106.8300,
+        "address": "East Jakarta"
+      }
+    }
+  ]
+}

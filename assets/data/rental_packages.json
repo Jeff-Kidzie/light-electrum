@@ -1,0 +1,73 @@
+{
+  "rental_packages": [
+    {
+      "id": "package_001",
+      "title": "Hourly",
+      "subtitle": "Per Hour",
+      "price": "Rp 50.000",
+      "priceValue": 50000,
+      "duration": "1 hour",
+      "durationType": "hourly",
+      "description": "Pay as you go",
+      "features": [
+        "Flexible timing",
+        "No commitment",
+        "Best for short trips"
+      ],
+      "isPopular": false,
+      "savings": null
+    },
+    {
+      "id": "package_002",
+      "title": "Daily",
+      "subtitle": "Per Day",
+      "price": "Rp 300.000",
+      "priceValue": 300000,
+      "duration": "24 hours",
+      "durationType": "daily",
+      "description": "Pay as you go",
+      "features": [
+        "24-hour access",
+        "Save Rp 50.000",
+        "Perfect for day trips"
+      ],
+      "isPopular": true,
+      "savings": 50000
+    },
+    {
+      "id": "package_003",
+      "title": "Weekly",
+      "subtitle": "Per Week",
+      "price": "Rp 1.500.000",
+      "priceValue": 1500000,
+      "duration": "7 days",
+      "durationType": "weekly",
+      "description": "Pay as you go",
+      "features": [
+        "7-day unlimited access",
+        "Save Rp 600.000",
+        "Best value for regular users"
+      ],
+      "isPopular": false,
+      "savings": 600000
+    },
+    {
+      "id": "package_004",
+      "title": "Monthly",
+      "subtitle": "Per Month",
+      "price": "Rp 3.000.000",
+      "priceValue": 3000000,
+      "duration": "30 days",
+      "durationType": "monthly",
+      "description": "Pay as you go",
+      "features": [
+        "30-day unlimited access",
+        "Save Rp 3.000.000",
+        "Priority bike selection",
+        "Free maintenance support"
+      ],
+      "isPopular": false,
+      "savings": 3000000
+    }
+  ]
+}

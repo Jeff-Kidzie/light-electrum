@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lightweight_electrum/feature/auth/view/register_screen.dart';
+import 'package:lightweight_electrum/router/app_router.dart';
 import 'package:lightweight_electrum/theme/app_theme.dart';
 
 void main() {
@@ -12,12 +12,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp.router(
+      title: 'Lightweight Electrum',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme(),
-      // home: const DesignComponentScreen(),
-      home: RegisterScreen(),
+      routerConfig: AppRouter.router,
     );
   }
 }

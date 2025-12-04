@@ -28,7 +28,7 @@ class AppButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 12.0,
-              horizontal: 24.0,
+              horizontal: 12.0,
             ),
             child: Center(
               child: isLoading
@@ -46,7 +46,7 @@ class AppButton extends StatelessWidget {
                       label,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onPrimary,
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

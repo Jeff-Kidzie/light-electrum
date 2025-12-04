@@ -1,61 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:lightweight_electrum/data/bike.dart';
+import 'package:lightweight_electrum/theme/app_color.dart';
 import 'package:lightweight_electrum/theme/app_text_styles.dart';
+import 'package:lightweight_electrum/widget/chips.dart';
 
 class CardBike extends StatelessWidget {
-  const CardBike({super.key});
+  final Bike bike;
+  final VoidCallback? onTap;
+
+  const CardBike({super.key, required this.bike, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
       elevation: 4,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                'assets/images/electrumh5.webp',
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  bike.imageUrl,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Electrum H5',
-                  style: AppTextStyles.semiBold.copyWith(
-                    fontSize: 18,
-                    color: Colors.black,
-                  ),
+              SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(bike.name, style: AppTextStyles.title),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Range ${bike.range}',
+                      style: AppTextStyles.bodyMedium,
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(bike.priceText, style: AppTextStyles.priceStyle),
+                        Chips(
+                          label: 'Available',
+                          labelColor: Color(AppColors.secondary),
+                          chipColor: Color(
+                            AppColors.secondary,
+                          ).withValues(alpha: 0.2),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'Range 80km',
-                  style: AppTextStyles.regular.copyWith(
-                    fontSize: 16,
-                    color: Color(0xFF555555),
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text('Rp 50.000/hour', style: AppTextStyles.priceStyleBig),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
-
-  Widget _buildFeatureItem(String feature) => Row(
-    children: [
-      Icon(Icons.check, color: Colors.green, size: 16),
-      SizedBox(width: 8),
-      Text(feature, style: TextStyle(fontSize: 14)),
-    ],
-  );
 }

@@ -123,7 +123,7 @@ class DetailBike extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Rp 50.000', style: AppTextStyles.priceStyleBig),
+            Text('Rp 50.000', style: AppTextStyles.priceStyle),
             Text(
               'Pay as you go, billed per minute',
               style: AppTextStyles.label.copyWith(color: Color(0xFF555555)),

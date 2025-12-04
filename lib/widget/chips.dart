@@ -23,7 +23,7 @@ class Chips extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: AppTextStyles.semiBold.copyWith(color: labelColor),
+        style: AppTextStyles.semiBold.copyWith(color: labelColor, fontSize: 11),
       ),
     );
   }

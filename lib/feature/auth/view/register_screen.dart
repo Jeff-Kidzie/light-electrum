@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/register_bloc.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/register_event.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/register_state.dart';
-import 'package:lightweight_electrum/feature/home/home.dart';
 import 'package:lightweight_electrum/theme/app_text_styles.dart';
 import 'package:lightweight_electrum/widget/app_button.dart';
 import 'package:lightweight_electrum/widget/app_text_field.dart';
@@ -45,11 +45,8 @@ class RegisterScreen extends StatelessWidget {
       child: BlocConsumer<RegisterBloc, RegisterState>(
         listener: (context, state) {
           if (state is RegisterSuccess) {
-            // Navigate to another screen or show success message
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
+            // Navigate to home screen using go_router
+            context.go('/home');
           }
         },
         builder: (context, state) {
