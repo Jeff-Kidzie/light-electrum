@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:lightweight_electrum/data/bike_detail.dart';
 import 'package:lightweight_electrum/feature/booking/bloc/book_form_bloc.dart';
@@ -20,95 +21,131 @@ class BookFormScreen extends StatelessWidget {
     final bikeDetail = BikeDetail.fromJson(bikeDetailJson);
     return BlocProvider(
       create: (context) => BookFormBloc()..add(BookFormInitialize()),
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Book a Test Ride')),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CardBike(bike: bikeDetail),
-                SizedBox(height: 16),
-                Text('Trip Details', style: AppTextStyles.title),
-                SizedBox(height: 8),
-                Text('Pickup date', style: AppTextStyles.bold),
-                SizedBox(height: 8),
-                BlocBuilder<BookFormBloc, BookFormState>(
-                  builder: (blocContext, state) {
-                    if (state is BookFormLoaded) {
-                      return _CardIcon(
-                        prefixIcon: Icons.calendar_today,
-                        onTap: () {
-                          final bloc = blocContext.read<BookFormBloc>();
-                          showDialog(
-                            context: context,
-                            builder: (dialogContext) => CalendarDialog(
-                              initialDate: state.selectedDate,
-                              onDateSelected: (date) {
-                                bloc.add(BookFormDateChanged(date));
+      child: BlocListener<BookFormBloc, BookFormState>(
+        listener: (context, state) {
+          if (state is BookFormSuccess) {
+            context.go('/success-book');
+          }
+        },
+        child: Scaffold(
+          appBar: AppBar(title: const Text('Book a Test Ride')),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CardBike(bike: bikeDetail),
+                  SizedBox(height: 16),
+                  Text('Trip Details', style: AppTextStyles.title),
+                  SizedBox(height: 8),
+                  Text('Pickup date', style: AppTextStyles.bold),
+                  SizedBox(height: 8),
+                  BlocBuilder<BookFormBloc, BookFormState>(
+                    builder: (blocContext, state) {
+                      if (state is BookFormLoaded) {
+                        return _CardIcon(
+                          prefixIcon: Icons.calendar_today,
+                          onTap: () {
+                            final bloc = blocContext.read<BookFormBloc>();
+                            showDialog(
+                              context: context,
+                              builder: (dialogContext) => CalendarDialog(
+                                initialDate: state.selectedDate,
+                                onDateSelected: (date) {
+                                  bloc.add(BookFormDateChanged(date));
+                                },
+                              ),
+                            );
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                DateFormat(
+                                  'MMM dd, yyyy',
+                                ).format(state.selectedDate),
+                                style: AppTextStyles.semiBold.copyWith(
+                                  fontSize: 14,
+                                ),
+                              ),
+                              Text(
+                                'Tap to change date',
+                                style: AppTextStyles.label,
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                      return SizedBox.shrink();
+                    },
+                  ),
+                  SizedBox(height: 24),
+                  Text('Contact Details', style: AppTextStyles.title),
+                  SizedBox(height: 8),
+                  BlocBuilder<BookFormBloc, BookFormState>(
+                    builder: (blocContext, state) {
+                      if (state is BookFormLoaded) {
+                        return Column(
+                          children: [
+                            AppTextField(
+                              title: 'Full Name',
+                              hintText: 'Enter your full name',
+                              prefixIcon: Icon(Icons.person_outline),
+                              errorText: state.fullNameError,
+                              onChanged: (value) {
+                                blocContext.read<BookFormBloc>().add(
+                                  BookFormFullNameChanged(value),
+                                );
                               },
                             ),
-                          );
-                        },
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              DateFormat(
-                                'MMM dd, yyyy',
-                              ).format(state.selectedDate),
-                              style: AppTextStyles.semiBold.copyWith(
-                                fontSize: 14,
-                              ),
+                            SizedBox(height: 16),
+                            AppTextField(
+                              title: 'Email Address',
+                              hintText: 'Enter your email address',
+                              prefixIcon: Icon(Icons.email_outlined),
+                              errorText: state.emailError,
+                              onChanged: (value) {
+                                blocContext.read<BookFormBloc>().add(
+                                  BookFormEmailChanged(value),
+                                );
+                              },
                             ),
-                            Text(
-                              'Tap to change date',
-                              style: AppTextStyles.label,
+                            SizedBox(height: 16),
+                            AppTextField(
+                              title: 'Phone Number',
+                              hintText: 'Enter your phone number',
+                              prefixIcon: Icon(Icons.phone_outlined),
+                              onChanged: (value) {
+                                blocContext.read<BookFormBloc>().add(
+                                  BookFormPhoneChanged(value),
+                                );
+                              },
+                            ),
+                            SizedBox(height: 32),
+                            AppButton(
+                              onPressed: state.isFormValid
+                                  ? () {
+                                      blocContext.read<BookFormBloc>().add(
+                                        BookFormSubmitted(
+                                          fullName: state.fullName,
+                                          email: state.email,
+                                          phoneNumber: state.phoneNumber,
+                                          pickupDate: state.selectedDate,
+                                        ),
+                                      );
+                                    }
+                                  : () {},
+                              label: 'Submit request',
                             ),
                           ],
-                        ),
-                      );
-                    }
-                    return SizedBox.shrink();
-                  },
-                ),
-                SizedBox(height: 24),
-                Text('Contact Details', style: AppTextStyles.title),
-                SizedBox(height: 8),
-                AppTextField(
-                  title: 'Full Name',
-                  hintText: 'Enter your full name',
-                  prefixIcon: Icon(Icons.person_outline),
-                ),
-                SizedBox(height: 16),
-                AppTextField(
-                  title: 'Email Address',
-                  hintText: 'Enter your email address',
-                  prefixIcon: Icon(Icons.email_outlined),
-                ),
-                SizedBox(height: 16),
-                AppTextField(
-                  title: 'Phone Number',
-                  hintText: 'Enter your phone number',
-                  prefixIcon: Icon(Icons.phone_outlined),
-                ),
-                SizedBox(height: 32),
-                AppButton(
-                  onPressed: () {
-                    // TODO: Get form values and submit
-                    context.read<BookFormBloc>().add(
-                      BookFormSubmitted(
-                        fullName: '',
-                        email: '',
-                        phoneNumber: '',
-                        pickupDate: DateTime.now(),
-                      ),
-                    );
-                  },
-                  label: 'Submit request',
-                ),
-              ],
+                        );
+                      }
+                      return SizedBox.shrink();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lightweight_electrum/theme/app_text_styles.dart';
 import 'package:lightweight_electrum/widget/app_button.dart';
 import 'package:lottie/lottie.dart';
@@ -34,7 +35,12 @@ class SuccessBookScreen extends StatelessWidget {
             SizedBox(height: 16),
             _CardBookDetail(),
             Spacer(),
-            AppButton(onPressed: () {}, label: 'Back to Home'),
+            AppButton(
+              onPressed: () {
+                context.go('/home');
+              },
+              label: 'Back to Home',
+            ),
             SizedBox(height: 16),
           ],
         ),

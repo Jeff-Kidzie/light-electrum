@@ -4,6 +4,7 @@ import 'package:lightweight_electrum/feature/auth/view/register_screen.dart';
 import 'package:lightweight_electrum/feature/home/view/bike_detail_screen.dart';
 import 'package:lightweight_electrum/feature/home/view/home_screen.dart';
 import 'package:lightweight_electrum/screen/book_form_screen.dart';
+import 'package:lightweight_electrum/screen/success_book_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -37,6 +38,11 @@ class AppRouter {
           }
           return BookFormScreen(bikeDetailJson: bikeDetailJson);
         },
+      ),
+      GoRoute(
+        path: '/success-book',
+        name: 'success-book',
+        builder: (context, state) => const SuccessBookScreen(),
       ),
     ],
     errorBuilder: (context, state) =>
