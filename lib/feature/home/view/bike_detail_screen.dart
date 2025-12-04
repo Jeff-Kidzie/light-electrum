@@ -197,7 +197,7 @@ class BikeDetailScreen extends StatelessWidget {
                               label: 'Book Now - ${bike.pricing.priceText}',
                               onPressed: () {
                                 // Navigate to book form with bike detail
-                                context.go('/book-form', extra: bike.toJson());
+                                context.push('/book-form', extra: bike.toJson());
                               },
                             ),
                           ),

@@ -28,7 +28,13 @@ class BookFormScreen extends StatelessWidget {
           }
         },
         child: Scaffold(
-          appBar: AppBar(title: const Text('Book a Test Ride')),
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => context.pop(),
+            ),
+            title: const Text('Book a Test Ride'),
+          ),
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -135,7 +141,7 @@ class BookFormScreen extends StatelessWidget {
                                         ),
                                       );
                                     }
-                                  : () {},
+                                  : null,
                               label: 'Submit request',
                             ),
                           ],

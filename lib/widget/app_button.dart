@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String label;
   final bool fullWidth;
   final bool isLoading;
@@ -16,15 +16,19 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDisabled = onPressed == null;
+
     return SizedBox(
       width: fullWidth ? double.infinity : null,
       child: Material(
         elevation: 2,
         borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).primaryColor,
+        color: isDisabled
+            ? Colors.grey.withOpacity(0.5)
+            : Theme.of(context).primaryColor,
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
-          onTap: isLoading ? null : onPressed,
+          onTap: isLoading || isDisabled ? null : onPressed,
           child: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 12.0,
