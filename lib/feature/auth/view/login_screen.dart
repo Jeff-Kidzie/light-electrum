@@ -48,6 +48,20 @@ class LoginScreen extends StatelessWidget {
             if (state is LoginSuccess) {
               // Navigate to home screen using go_router
               context.go('/home');
+            } else if (state is LoginFailure) {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Login Failed'),
+                  content: Text(state.message),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
+              );
             }
           },
           builder: (context, state) {

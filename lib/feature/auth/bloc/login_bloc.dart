@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/login_event.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/login_state.dart';
 import 'package:lightweight_electrum/service/auth_service.dart';
+import 'package:lightweight_electrum/utils/validators.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthService _authService = AuthService();
@@ -20,7 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         await _authService.login(email: event.email, password: event.password);
         emit(LoginSuccess());
       } catch (e) {
-        emit(LoginErrorEmail(message: 'Login failed: ${e.toString()}'));
+        emit(LoginFailure(message: e.toString()));
       }
     });
 
@@ -34,27 +35,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   void _validatePassword(LoginInputPassword event, Emitter<LoginState> emit) {
     debugPrint('Validating password: ${event.password}');
     _password = event.password;
-    var password = event.password;
-
-    if (password.isEmpty) {
-      _passwordError = 'Password is required';
-      _isPasswordValid = false;
-    } else if (password.length < 8) {
-      _passwordError = 'Password must be at least 8 characters';
-      _isPasswordValid = false;
-    } else if (!RegExp(r'[A-Z]').hasMatch(password)) {
-      _passwordError = 'Password must contain at least one uppercase letter';
-      _isPasswordValid = false;
-    } else if (!RegExp(r'[a-z]').hasMatch(password)) {
-      _passwordError = 'Password must contain at least one lowercase letter';
-      _isPasswordValid = false;
-    } else if (!RegExp(r'[0-9]').hasMatch(password)) {
-      _passwordError = 'Password must contain at least one number';
-      _isPasswordValid = false;
-    } else {
-      _passwordError = null;
-      _isPasswordValid = true;
-    }
+    _passwordError = Validators.validatePassword(event.password);
+    _isPasswordValid = _passwordError == null;
 
     emit(
       LoginValidState(
@@ -69,20 +51,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   void _validateEmail(LoginInputEmail event, Emitter<LoginState> emit) {
     debugPrint('Validating email: ${event.email}');
     _email = event.email;
-    var email = event.email.trim();
-
-    if (email.isEmpty) {
-      _emailError = 'Email address is required';
-      _isEmailValid = false;
-    } else if (!RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-    ).hasMatch(email)) {
-      _emailError = 'Please enter a valid email address';
-      _isEmailValid = false;
-    } else {
-      _emailError = null;
-      _isEmailValid = true;
-    }
+    _emailError = Validators.validateEmail(event.email);
+    _isEmailValid = _emailError == null;
 
     emit(
       LoginValidState(

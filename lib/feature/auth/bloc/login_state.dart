@@ -6,6 +6,11 @@ class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {}
 
+class LoginFailure extends LoginState {
+  final String message;
+  LoginFailure({required this.message});
+}
+
 class LoginErrorPassword extends LoginState {
   final String message;
   LoginErrorPassword({required this.message});

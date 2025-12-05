@@ -6,6 +6,11 @@ class RegisterLoading extends RegisterState {}
 
 class RegisterSuccess extends RegisterState {}
 
+class RegisterFailure extends RegisterState {
+  final String message;
+  RegisterFailure({required this.message});
+}
+
 class RegisterErrorPassword extends RegisterState {
   final String message;
   RegisterErrorPassword({required this.message});
