@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lightweight_electrum/feature/auth/view/login_screen.dart';
 import 'package:lightweight_electrum/feature/auth/view/register_screen.dart';
-import 'package:lightweight_electrum/feature/home/view/bike_detail_screen.dart';
+import 'package:lightweight_electrum/feature/booking/view/bike_detail_screen.dart';
 import 'package:lightweight_electrum/feature/home/view/home_screen.dart';
 import 'package:lightweight_electrum/screen/book_form_screen.dart';
 import 'package:lightweight_electrum/screen/success_book_screen.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: '/register',
+    initialLocation: '/login',
     routes: [
       GoRoute(
         path: '/register',
         name: 'register',
         builder: (context, state) => RegisterScreen(),
+      ),
+      GoRoute(
+        path: '/login',
+        name: 'login',
+        builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
         path: '/home',

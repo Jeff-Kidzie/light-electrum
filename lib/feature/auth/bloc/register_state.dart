@@ -20,3 +20,23 @@ class RegisterErrorEmail extends RegisterState {
   final String message;
   RegisterErrorEmail({required this.message});
 }
+
+class RegisterValidState extends RegisterState {
+  final bool isUsernameValid;
+  final bool isEmailValid;
+  final bool isPasswordValid;
+  final String? usernameError;
+  final String? emailError;
+  final String? passwordError;
+
+  RegisterValidState({
+    required this.isUsernameValid,
+    required this.isEmailValid,
+    required this.isPasswordValid,
+    this.usernameError,
+    this.emailError,
+    this.passwordError,
+  });
+
+  bool get isFormValid => isUsernameValid && isEmailValid && isPasswordValid;
+}

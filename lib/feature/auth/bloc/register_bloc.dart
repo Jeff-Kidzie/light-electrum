@@ -4,6 +4,13 @@ import 'package:lightweight_electrum/feature/auth/bloc/register_event.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
+  bool _isUsernameValid = false;
+  bool _isEmailValid = false;
+  bool _isPasswordValid = false;
+  String? _usernameError;
+  String? _emailError;
+  String? _passwordError;
+
   RegisterBloc(super.initialState) {
     on<RegisterButtonPressed>((event, emit) async {
       emit(RegisterLoading());
@@ -25,22 +32,32 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     var username = event.username.trim();
 
     if (username.isEmpty) {
-      emit(RegisterErrorUsername(message: 'Full name is required'));
+      _usernameError = 'Full name is required';
+      _isUsernameValid = false;
     } else if (username.length < 3) {
-      emit(
-        RegisterErrorUsername(message: 'Full name must be at least 3 characters'),
-      );
+      _usernameError = 'Full name must be at least 3 characters';
+      _isUsernameValid = false;
     } else if (username.contains(RegExp(r'[0-9]'))) {
-      emit(RegisterErrorUsername(message: 'Full name cannot contain numbers'));
+      _usernameError = 'Full name cannot contain numbers';
+      _isUsernameValid = false;
     } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(username)) {
-      emit(
-        RegisterErrorUsername(
-          message: 'Full name can only contain letters and spaces',
-        ),
-      );
+      _usernameError = 'Full name can only contain letters and spaces';
+      _isUsernameValid = false;
     } else {
-      emit(RegisterInitial());
+      _usernameError = null;
+      _isUsernameValid = true;
     }
+
+    emit(
+      RegisterValidState(
+        isUsernameValid: _isUsernameValid,
+        isEmailValid: _isEmailValid,
+        isPasswordValid: _isPasswordValid,
+        usernameError: _usernameError,
+        emailError: _emailError,
+        passwordError: _passwordError,
+      ),
+    );
   }
 
   void _validatePassword(
@@ -51,32 +68,35 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     var password = event.password;
 
     if (password.isEmpty) {
-      emit(RegisterErrorPassword(message: 'Password is required'));
+      _passwordError = 'Password is required';
+      _isPasswordValid = false;
     } else if (password.length < 8) {
-      emit(
-        RegisterErrorPassword(message: 'Password must be at least 8 characters'),
-      );
+      _passwordError = 'Password must be at least 8 characters';
+      _isPasswordValid = false;
     } else if (!RegExp(r'[A-Z]').hasMatch(password)) {
-      emit(
-        RegisterErrorPassword(
-          message: 'Password must contain at least one uppercase letter',
-        ),
-      );
+      _passwordError = 'Password must contain at least one uppercase letter';
+      _isPasswordValid = false;
     } else if (!RegExp(r'[a-z]').hasMatch(password)) {
-      emit(
-        RegisterErrorPassword(
-          message: 'Password must contain at least one lowercase letter',
-        ),
-      );
+      _passwordError = 'Password must contain at least one lowercase letter';
+      _isPasswordValid = false;
     } else if (!RegExp(r'[0-9]').hasMatch(password)) {
-      emit(
-        RegisterErrorPassword(
-          message: 'Password must contain at least one number',
-        ),
-      );
+      _passwordError = 'Password must contain at least one number';
+      _isPasswordValid = false;
     } else {
-      emit(RegisterInitial());
+      _passwordError = null;
+      _isPasswordValid = true;
     }
+
+    emit(
+      RegisterValidState(
+        isUsernameValid: _isUsernameValid,
+        isEmailValid: _isEmailValid,
+        isPasswordValid: _isPasswordValid,
+        usernameError: _usernameError,
+        emailError: _emailError,
+        passwordError: _passwordError,
+      ),
+    );
   }
 
   void _validateEmail(RegisterInputEmail event, Emitter<RegisterState> emit) {
@@ -84,13 +104,27 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     var email = event.email.trim();
 
     if (email.isEmpty) {
-      emit(RegisterErrorEmail(message: 'Email address is required'));
+      _emailError = 'Email address is required';
+      _isEmailValid = false;
     } else if (!RegExp(
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
     ).hasMatch(email)) {
-      emit(RegisterErrorEmail(message: 'Please enter a valid email address'));
+      _emailError = 'Please enter a valid email address';
+      _isEmailValid = false;
     } else {
-      emit(RegisterInitial());
+      _emailError = null;
+      _isEmailValid = true;
     }
+
+    emit(
+      RegisterValidState(
+        isUsernameValid: _isUsernameValid,
+        isEmailValid: _isEmailValid,
+        isPasswordValid: _isPasswordValid,
+        usernameError: _usernameError,
+        emailError: _emailError,
+        passwordError: _passwordError,
+      ),
+    );
   }
 }

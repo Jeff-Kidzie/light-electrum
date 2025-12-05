@@ -50,17 +50,17 @@ class RegisterScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          // Extract error messages from state
+          // Extract error messages and form validity from state
           String? usernameError;
           String? emailError;
           String? passwordError;
+          bool isFormValid = false;
 
-          if (state is RegisterErrorUsername) {
-            usernameError = state.message;
-          } else if (state is RegisterErrorEmail) {
-            emailError = state.message;
-          } else if (state is RegisterErrorPassword) {
-            passwordError = state.message;
+          if (state is RegisterValidState) {
+            usernameError = state.usernameError;
+            emailError = state.emailError;
+            passwordError = state.passwordError;
+            isFormValid = state.isFormValid;
           }
 
           return Column(
@@ -84,7 +84,9 @@ class RegisterScreen extends StatelessWidget {
                 hintText: 'Email Address',
                 prefixIcon: Icon(Icons.email),
                 onChanged: (value) {
-                  context.read<RegisterBloc>().add(RegisterInputEmail(email: value));
+                  context.read<RegisterBloc>().add(
+                    RegisterInputEmail(email: value),
+                  );
                 },
               ),
               SizedBox(height: 16),
@@ -103,32 +105,40 @@ class RegisterScreen extends StatelessWidget {
               SizedBox(height: 24),
               AppButton(
                 isLoading: state is RegisterLoading,
-                onPressed: () {
-                  context.read<RegisterBloc>().add(
-                    RegisterButtonPressed(username: 'email', password: 'password'),
-                  );
-                },
+                onPressed: isFormValid
+                    ? () {
+                        context.read<RegisterBloc>().add(
+                          RegisterButtonPressed(
+                            username: 'email',
+                            password: 'password',
+                          ),
+                        );
+                      }
+                    : null,
                 label: 'Create account',
               ),
               SizedBox(height: 16),
               Center(
-                child: Text.rich(
-                  TextSpan(
-                    text: 'Already have an account? ',
-                    style: AppTextStyles.bodyMedium.copyWith(
-                      fontSize: 14,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'Log in',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Theme.of(context).primaryColor,
-                        ),
+                child: GestureDetector(
+                  onTap: () => context.pop(),
+                  child: Text.rich(
+                    TextSpan(
+                      text: 'Already have an account? ',
+                      style: AppTextStyles.bodyMedium.copyWith(
+                        fontSize: 14,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ],
+                      children: [
+                        TextSpan(
+                          text: 'Log in',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
