@@ -107,10 +107,12 @@ class RegisterScreen extends StatelessWidget {
                 isLoading: state is RegisterLoading,
                 onPressed: isFormValid
                     ? () {
+                        final bloc = context.read<RegisterBloc>();
                         context.read<RegisterBloc>().add(
                           RegisterButtonPressed(
-                            username: 'email',
-                            password: 'password',
+                            username: 'user',
+                            email: bloc.emailValue,
+                            password: bloc.passwordValue,
                           ),
                         );
                       }

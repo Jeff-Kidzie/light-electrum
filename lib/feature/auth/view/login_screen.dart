@@ -94,10 +94,11 @@ class LoginScreen extends StatelessWidget {
                   isLoading: state is LoginLoading,
                   onPressed: isFormValid
                       ? () {
-                          context.read<LoginBloc>().add(
+                          final bloc = context.read<LoginBloc>();
+                          bloc.add(
                             LoginButtonPressed(
-                              email: 'email',
-                              password: 'password',
+                              email: bloc.emailValue,
+                              password: bloc.passwordValue,
                             ),
                           );
                         }

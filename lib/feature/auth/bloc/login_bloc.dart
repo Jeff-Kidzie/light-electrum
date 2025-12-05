@@ -2,27 +2,38 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/login_event.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/login_state.dart';
+import 'package:lightweight_electrum/service/auth_service.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  final AuthService _authService = AuthService();
   bool _isEmailValid = false;
   bool _isPasswordValid = false;
   String? _emailError;
   String? _passwordError;
+  String _email = '';
+  String _password = '';
 
   LoginBloc(super.initialState) {
     on<LoginButtonPressed>((event, emit) async {
       emit(LoginLoading());
-      // Simulate a login process
-      await Future.delayed(Duration(seconds: 2));
-      emit(LoginSuccess());
+      try {
+        await _authService.login(email: event.email, password: event.password);
+        emit(LoginSuccess());
+      } catch (e) {
+        emit(LoginErrorEmail(message: 'Login failed: ${e.toString()}'));
+      }
     });
 
     on<LoginInputPassword>(_validatePassword);
     on<LoginInputEmail>(_validateEmail);
   }
 
+  String get emailValue => _email;
+  String get passwordValue => _password;
+
   void _validatePassword(LoginInputPassword event, Emitter<LoginState> emit) {
     debugPrint('Validating password: ${event.password}');
+    _password = event.password;
     var password = event.password;
 
     if (password.isEmpty) {
@@ -57,6 +68,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void _validateEmail(LoginInputEmail event, Emitter<LoginState> emit) {
     debugPrint('Validating email: ${event.email}');
+    _email = event.email;
     var email = event.email.trim();
 
     if (email.isEmpty) {

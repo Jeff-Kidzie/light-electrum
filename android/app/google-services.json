@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "922872147634",
+    "project_id": "light-electrum",
+    "storage_bucket": "light-electrum.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922872147634:android:eeed3cccb54035966a23ab",
+        "android_client_info": {
+          "package_name": "com.example.lightweight_electrum"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOAdKy2p-Zl7CtJ4UUUQOza8XogDVu45o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

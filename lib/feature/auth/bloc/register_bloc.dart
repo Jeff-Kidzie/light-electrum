@@ -2,27 +2,42 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/register_event.dart';
 import 'package:lightweight_electrum/feature/auth/bloc/register_state.dart';
+import 'package:lightweight_electrum/service/auth_service.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
+  final AuthService _authService = AuthService();
   bool _isUsernameValid = false;
   bool _isEmailValid = false;
   bool _isPasswordValid = false;
   String? _usernameError;
   String? _emailError;
   String? _passwordError;
+  String _email = '';
+  String _password = '';
 
   RegisterBloc(super.initialState) {
     on<RegisterButtonPressed>((event, emit) async {
       emit(RegisterLoading());
-      // Simulate a Register process
-      await Future.delayed(Duration(seconds: 2));
-      emit(RegisterSuccess());
+      try {
+        await _authService.register(
+          email: event.email,
+          password: event.password,
+        );
+        emit(RegisterSuccess());
+      } catch (e) {
+        emit(
+          RegisterErrorEmail(message: 'Registration failed: ${e.toString()}'),
+        );
+      }
     });
 
     on<RegisterInputUsername>(_validateUserName);
     on<RegisterInputPassword>(_validatePassword);
     on<RegisterInputEmail>(_validateEmail);
   }
+
+  String get emailValue => _email;
+  String get passwordValue => _password;
 
   void _validateUserName(
     RegisterInputUsername event,
@@ -65,6 +80,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     Emitter<RegisterState> emit,
   ) {
     debugPrint('Validating password: ${event.password}');
+    _password = event.password;
     var password = event.password;
 
     if (password.isEmpty) {
@@ -101,6 +117,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   void _validateEmail(RegisterInputEmail event, Emitter<RegisterState> emit) {
     debugPrint('Validating email: ${event.email}');
+    _email = event.email;
     var email = event.email.trim();
 
     if (email.isEmpty) {
